@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <link rel="stylesheet" href="admin.css">
+     
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
+
+    <link rel="icon" href="Agape Logo.jpg">
+    <title>Admin Content Upload</title>
+</head>
+<body>
+    <nav>
+        <div class="logo-name">
+            <div class="logo-image">
+               <img src="logo.png" alt="">
+            </div>
+
+            <span class="logo_name">Agape Edu.</span>
+        </div>
+
+        
+
+        <div class="menu-items">
+            <ul class="nav-links">
+                <li><a href="index.html">
+                    <i class="uil uil-estate"></i>
+                    <span class="link-name">Dahsboard</span>
+                </a></li>
+                <li><a href="content.html">
+                    <i class="uil uil-files-landscapes"></i>
+                    <span class="link-name">Content</span>
+                </a></li>
+                <li><a href="#">
+                    <i class="uil uil-chart"></i>
+                    <span class="link-name">Analytics</span>
+                </a></li>
+
+              
+                <li><a href="admin.html">
+                    <i class="uil uil-cog"></i> <!-- Gear icon for administration -->
+                    <span class="link-name">Administration</span>
+                </a></li>
+                
+               
+            </ul>
+            
+            <ul class="logout-mode">
+                <li><a href="Authentication/login.html">
+                    <i class="uil uil-signout"></i>
+                    <span class="link-name">Logout</span>
+                </a></li>
+
+                <li class="mode">
+                    <a href="#">
+                        <i class="uil uil-moon"></i>
+                    <span class="link-name">Dark Mode</span>
+                </a>
+
+                <div class="mode-toggle">
+                  <span class="switch"></span>
+                </div>
+            </li>
+            </ul>
+        </div>
+    </nav>
+
+    <section class="dashboard">
+        <div class="top">
+            <i class="uil uil-bars sidebar-toggle"></i>
+
+            <div class="search-box">
+                <i class="uil uil-search"></i>
+                <input type="text" placeholder="Search here...">
+            </div>
+            
+        </div>
+
+        <div class="dash-content">
+            <div class="overview">
+                <div class="title">
+                    <i class="uil uil-tachometer-fast-alt"></i>
+                    <span class="text">students Dashboard</span>
+                </div>
+
+                
+                
+            </div>
+        </div>
+
+        <div class="notification-icon-container">
+            <i class="uil uil-bell notification-icon" onclick="toggleNotificationPanel()"></i>
+            <span class="notification-badge">3</span>
+        </div>
+    
+        <!-- Notification Panel -->
+        <div id="notification-panel" class="notification-panel">
+            <h3>Notifications</h3>
+            <ul>
+                <li>New message from John</li>
+                <li>Update available for your app</li>
+                <li>Your order has been shipped</li>
+            </ul>
+        </div>
+
+        <div class="admin-container">
+            <h1>Upload Content</h1>
+            <form id="admin-upload-form" enctype="multipart/form-data">
+                <label for="admin-title">Content Title</label>
+                <input type="text" id="admin-title" name="title" required>
+                
+                <label for="admin-description">Description</label>
+                <input type="text" id="admin-description" name="description" required>
+                
+                <label for="admin-image">Upload Images</label>
+                <input type="file" id="admin-image" name="images" accept="image/*" multiple>
+                <div id="admin-image-preview" class="admin-file-preview"></div>
+                
+                <label for="admin-pdf">Upload PDFs</label>
+                <input type="file" id="admin-pdf" name="pdfs" accept="application/pdf" multiple>
+                <div id="admin-pdf-preview" class="admin-file-preview"></div>
+                
+                <label for="admin-video">Upload Videos</label>
+                <input type="file" id="admin-video" name="videos" accept="video/*" multiple>
+                <div id="admin-video-preview" class="admin-file-preview"></div>
+    
+                <label for="admin-audio">Upload Audios</label>
+                <input type="file" id="admin-audio" name="audios" accept="audio/*" multiple>
+                <div id="admin-audio-preview" class="admin-file-preview"></div>
+                
+                <label for="admin-file">Upload Any Files</label>
+                <input type="file" id="admin-file" name="files" multiple>
+                <div id="admin-file-preview" class="admin-file-preview"></div>
+                
+                <button type="submit" style="background-color: darkblue;">Upload</button>
+            </form>
+        </div>
+    
+        
+
+       
+
+
+    </section>
+
+    
+
+    <script src="script.js"></script>
+    <script>
+        document.getElementById('admin-upload-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+            
+            let formData = new FormData(this);
+            
+            fetch('/upload', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                alert('Content uploaded successfully');
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+        });
+
+        document.getElementById('admin-image').addEventListener('change', function() {
+            previewFiles(this.files, 'admin-image-preview');
+        });
+        
+        document.getElementById('admin-pdf').addEventListener('change', function() {
+            previewFiles(this.files, 'admin-pdf-preview');
+        });
+        
+        document.getElementById('admin-video').addEventListener('change', function() {
+            previewFiles(this.files, 'admin-video-preview');
+        });
+
+        document.getElementById('admin-audio').addEventListener('change', function() {
+            previewFiles(this.files, 'admin-audio-preview');
+        });
+
+        document.getElementById('admin-file').addEventListener('change', function() {
+            previewFiles(this.files, 'admin-file-preview');
+        });
+        
+        function previewFiles(files, previewId) {
+            const preview = document.getElementById(previewId);
+            preview.innerHTML = '';
+            for (const file of files) {
+                const div = document.createElement('div');
+                div.textContent = file.name;
+                preview.appendChild(div);
+            }
+        }
+    </script>
+</body>
+</html>

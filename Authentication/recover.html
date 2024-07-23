@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Password Recovery</title>
+    <link rel="stylesheet" href="assets/css/recover.css">
+</head>
+<body>
+    <div class="container">
+        <img src="logo.png" alt="Logo" class="logo">
+        <form class="form" id="password-recovery-form">
+            <p class="title">Password Recovery</p>
+
+            <label>
+                <input required="" placeholder="" type="email" class="input" id="email">
+                <span>Email</span>
+            </label>
+
+            <button type="submit" class="submit">Reset Password</button>
+        </form>
+        <div class="error-message" id="error-message"></div>
+    </div>
+
+    <script>
+        const form = document.getElementById('password-recovery-form');
+        const errorMessage = document.getElementById('error-message');
+
+        form.addEventListener('submit', (event) => {
+            event.preventDefault();
+            const email = document.getElementById('email').value;
+
+            // Simulate password recovery process
+            setTimeout(() => {
+                if (email === 'name@gmail.com') {
+                    errorMessage.textContent = 'Password recovery email sent!';
+                } else {
+                    errorMessage.textContent = 'Error: Invalid email address.';
+                }
+            }, 2000);
+        });
+    </script>
+</body>
+</html>

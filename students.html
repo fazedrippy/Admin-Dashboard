@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <link rel="stylesheet" href="admin.css">
+     
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
+
+    <link rel="icon" href="Agape Logo.jpg">
+    <title>Admin Dashboard</title>
+</head>
+<body>
+    <nav>
+        <div class="logo-name">
+            <div class="logo-image">
+               <img src="logo.png" alt="">
+            </div>
+
+            <span class="logo_name">Agape Edu.</span>
+        </div>
+
+        
+
+        <div class="menu-items">
+            <ul class="nav-links">
+                <li><a href="index.html">
+                    <i class="uil uil-estate"></i>
+                    <span class="link-name">Dahsboard</span>
+                </a></li>
+                <li><a href="content.html">
+                    <i class="uil uil-files-landscapes"></i>
+                    <span class="link-name">Content</span>
+                </a></li>
+                <li><a href="#">
+                    <i class="uil uil-chart"></i>
+                    <span class="link-name">Analytics</span>
+                </a></li>
+
+              
+                <li><a href="admin.html">
+                    <i class="uil uil-cog"></i> <!-- Gear icon for administration -->
+                    <span class="link-name">Administration</span>
+                </a></li>
+                
+               
+            </ul>
+            
+            <ul class="logout-mode">
+                <li><a href="Authentication/login.html">
+                    <i class="uil uil-signout"></i>
+                    <span class="link-name">Logout</span>
+                </a></li>
+
+                <li class="mode">
+                    <a href="#">
+                        <i class="uil uil-moon"></i>
+                    <span class="link-name">Dark Mode</span>
+                </a>
+
+                <div class="mode-toggle">
+                  <span class="switch"></span>
+                </div>
+            </li>
+            </ul>
+        </div>
+    </nav>
+
+    <section class="dashboard">
+        <div class="top">
+            <i class="uil uil-bars sidebar-toggle"></i>
+
+            <div class="search-box">
+                <i class="uil uil-search"></i>
+                <input type="text" placeholder="Search here...">
+            </div>
+            
+        </div>
+
+        <div class="dash-content">
+            <div class="overview">
+                <div class="title">
+                    <i class="uil uil-tachometer-fast-alt"></i>
+                    <span class="text">students Dashboard</span>
+                </div>
+
+                
+                
+            </div>
+        </div>
+
+        <div class="notification-icon-container">
+            <i class="uil uil-bell notification-icon" onclick="toggleNotificationPanel()"></i>
+            <span class="notification-badge">3</span>
+        </div>
+    
+        <!-- Notification Panel -->
+        <div id="notification-panel" class="notification-panel">
+            <h3>Notifications</h3>
+            <ul>
+                <li>New message from John</li>
+                <li>Update available for your app</li>
+                <li>Your order has been shipped</li>
+            </ul>
+        </div>
+
+         <section class="dashboard">
+
+            <div class="role-list">
+                <div class="role-card" id="attendance">
+                    <i class="uil uil-check-circle"></i>
+                    <h2>Attendance</h2>
+                    <p>Manage student attendance here.</p>
+                    <a href="attendance.html" class="action-btn">View List</a>
+                    <!-- Dropdown for selecting grade -->
+                    <div class="custom-dropdown">
+                        <label for="attendance-grade-select">Choose Grade:</label>
+                        <select id="attendance-grade-select">
+                            <option value="">Select a grade</option>
+                            <option value="grade1">Grade 1</option>
+                            <option value="grade2">Grade 2</option>
+                            <option value="grade3">Grade 3</option>
+                            <option value="grade4">Grade 4</option>
+                            <option value="grade5">Grade 5</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="role-card" id="marklist">
+                    <i class="uil uil-clipboard-alt"></i>
+                    <h2>Mark List</h2>
+                    <p>Manage student mark lists here.</p>
+                    <a href="marklist.html" class="action-btn">View List</a>
+                    <!-- Dropdown for selecting grade -->
+                    <div class="custom-dropdown">
+                        <label for="marklist-grade-select">Choose Grade:</label>
+                        <select id="marklist-grade-select">
+                            <option value="">Select a grade</option>
+                            <option value="grade1">Grade 1</option>
+                            <option value="grade2">Grade 2</option>
+                            <option value="grade3">Grade 3</option>
+                            <option value="grade4">Grade 4</option>
+                            <option value="grade5">Grade 5</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            
+        </section>
+
+
+    </section>
+
+    
+
+    <script src="script.js"></script>
+</body>
+</html>
